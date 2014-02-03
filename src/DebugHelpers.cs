@@ -12,10 +12,6 @@ using System.Threading;
 // - filesystemwatcher
 public static class DebugHelpers
 {
-    public static void Main()
-    {
-        Console.WriteLine("System.Reflection.Assembly.LoadFrom(@\"" + Assembly.GetExecutingAssembly().Location + "\")");
-    }
     public static void BreakOnFileAccess(string path) 
     {
         var msg = Path.GetFullPath(path);
@@ -57,21 +53,3 @@ public static class DebugHelpers
 	
     }
 }
-
-#warning LATER
-// use HRESULT
-public static class Strinq
-{
-    public static IEnumerable<object> Select<TSource>(this IEnumerable<TSource> seq, string property)
-    {
-        var prop = typeof(TSource).GetProperty(property);
-        return seq.Select(s => prop.GetValue(s));
-    }
-   
-    public static IEnumerable<TSource> Where<TSource>(this IEnumerable<TSource> seq, string property, TSource value)
-    {
-        var prop = typeof(TSource).GetProperty(property);
-        return seq.Where(s => Object.Equals(s, (TSource)prop.GetValue(s)));
-    }
-}
-
