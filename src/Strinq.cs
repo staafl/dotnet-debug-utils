@@ -1,10 +1,23 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
 
 public static class Strinq
 {
+    public static void Dump<TSource>(this IEnumerable<TSource> seq)
+    {
+        var filePath = Path.GetTempFileName();
+        using(var sw = new StreamWriter(filePath))
+        {
+            foreach(var elem in seq)
+                sw.WriteLine(elem);
+        }
+        Process.Start(filePath);
+    }
+    
     public static IEnumerable<object> Select<TSource>(this IEnumerable<TSource> seq, string property)
     {
         var prop = typeof(TSource).GetProperty(property);
