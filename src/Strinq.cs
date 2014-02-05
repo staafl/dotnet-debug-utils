@@ -7,6 +7,11 @@ using System.Text.RegularExpressions;
 
 public static class Strinq
 {
+    public static object Prop(this object obj, string prop) 
+    {
+        return obj.GetType().GetProperty(prop).GetValue(obj);
+    }
+    
     public static void Dump<TSource>(this IEnumerable<TSource> seq)
     {
         var filePath = Path.GetTempFileName();
