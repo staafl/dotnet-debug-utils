@@ -6,8 +6,6 @@ using System.Linq;
 using System.Reflection;
 using System.Threading;
 
-// Assembly.LoadFrom("\\VELKO-PC\share\debug-utils.dll");
-
 // todo:
 // - filesystemwatcher
 public static class DebugHelpers
@@ -45,11 +43,13 @@ public static class DebugHelpers
             BindingFlags.Instance |
             BindingFlags.GetField);
 
+        #warning LATER
+        // other kinds of event handler delegate types
         var dlg = (System.EventHandler)field.GetValue(obj);
         
-#warning LATER
-// other kinds of event handlers
-        field.SetValue(obj, (EventHandler)((sender, ea) => { Debugger.Break(); dlg.Invoke(sender, ea); }));
+
+        bool doBreak = true;
+        field.SetValue(obj, (EventHandler)((sender, ea) => { if (doBreak) Debugger.Break(); dlg.Invoke(sender, ea); }));
 	
     }
 }
