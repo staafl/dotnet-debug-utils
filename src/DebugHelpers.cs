@@ -6,8 +6,6 @@ using System.Linq;
 using System.Reflection;
 using System.Threading;
 
-// todo:
-// - filesystemwatcher
 public static class DebugHelpers
 {
     public static void BreakOnFileAccess(string path) 

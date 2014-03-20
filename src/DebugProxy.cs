@@ -9,7 +9,7 @@ using System.Runtime.Remoting;
 using System.Runtime.Remoting.Messaging;
 using System.Runtime.Remoting.Proxies;
 
-  
+// used to intercept method calls to interface or MarshalByRef object  
 public class DebugProxy<T> : RealProxy
 {
   readonly T inner;
