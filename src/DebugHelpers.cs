@@ -41,10 +41,7 @@ public static class DebugHelpers
             BindingFlags.Instance |
             BindingFlags.GetField);
 
-        #warning LATER
-        // other kinds of event handler delegate types
-        var dlg = (System.EventHandler)field.GetValue(obj);
-        
+        var dlg = (System.EventHandler)field.GetValue(obj);        
 
         bool doBreak = true;
         field.SetValue(obj, (EventHandler)((sender, ea) => { if (doBreak) Debugger.Break(); dlg.Invoke(sender, ea); }));

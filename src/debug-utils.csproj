@@ -44,7 +44,6 @@
     <Compile Include="DebugHelpers.cs" />
     <Compile Include="DebugProxy.cs" />
     <Compile Include="Main.cs" />
-    <Compile Include="Samples.cs" />
     <Compile Include="Strinq.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

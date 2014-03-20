@@ -10,6 +10,15 @@ using System.Runtime.Remoting.Messaging;
 using System.Runtime.Remoting.Proxies;
 
 // used to intercept method calls to interface or MarshalByRef object  
+public static class DebugProxy
+{
+    public static T CreateProxy<T>(this T obj, Action<string> onInvoked) {
+        var proxy = new DebugProxy<T>(obj);
+        proxy.MethodInvoked += onInvoked;
+        return (T)proxy.GetTransparentProxy();
+    }
+}
+
 public class DebugProxy<T> : RealProxy
 {
   readonly T inner;
